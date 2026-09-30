@@ -4,20 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ContactHub | React Contact Cards</title>
-  <link rel="stylesheet" href="style.css">
   
-  <!-- React & ReactDOM CDN -->
+  <!-- Relative link to external CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Production React & ReactDOM CDNs -->
   <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
   
-  <!-- Babel CDN for JSX -->
+  <!-- Babel Compiler for Browser JSX -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
 
   <div id="root"></div>
 
-  <!-- React Code Embedded Inline to Fix GitHub Pages CORS Error -->
   <script type="text/babel">
     const { useState } = React;
 
@@ -59,13 +60,11 @@
 
       return (
         <div className="container">
-          {/* Header Section */}
           <header className="header">
             <h1>ContactHub</h1>
             <p>Modular React SPA with Dynamic Contact Cards</p>
           </header>
 
-          {/* Main Two-Column Layout */}
           <div className="layout">
             {/* Left Form Panel */}
             <div className="panel">
@@ -115,7 +114,7 @@
               </form>
             </div>
 
-            {/* Right Directory Panel */}
+            {/* Right Contact Directory Panel */}
             <div className="panel">
               <div className="directory-header">
                 <h2 className="panel-title">Contact Directory</h2>
@@ -134,7 +133,7 @@
                     <div key={contact.id} className="contact-card">
                       <div className="contact-info">
                         <h3>{contact.fullName}</h3>
-                        <p>{contact.email} {contact.phone ? `• ${contact.phone}` : ''}</p>
+                        <p>{contact.email} {contact.phone ? '• ' + contact.phone : ''}</p>
                         <span className="contact-role">{contact.role}</span>
                       </div>
                       <button
