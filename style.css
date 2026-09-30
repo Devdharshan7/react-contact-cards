@@ -1,0 +1,95 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: #f8fafc;
+  color: #1e293b;
+}
+
+.app-container {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.app-container h1 {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.2s ease;
+}
+
+.card.card-liked {
+  border-color: #f87171;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15);
+}
+
+.card-title {
+  font-size: 1.1rem;
+  color: #334155;
+}
+
+.status-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+}
+
+.status-label.label-liked {
+  background-color: #fef2f2;
+  color: #ef4444;
+}
+
+.status-label.label-unliked {
+  background-color: #f1f5f9;
+  color: #64748b;
+}
+
+.like-button {
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-like {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.btn-like:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-unlike {
+  background-color: #ef4444;
+  color: #ffffff;
+}
+
+.btn-unlike:hover {
+  background-color: #dc2626;
+}
