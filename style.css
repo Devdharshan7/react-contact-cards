@@ -17,7 +17,7 @@ body {
   padding: 0 1.5rem;
 }
 
-/* Header */
+/* Header Section */
 .header {
   text-align: center;
   margin-bottom: 2.5rem;
@@ -36,7 +36,7 @@ body {
   margin-top: 0.35rem;
 }
 
-/* Layout Grid */
+/* Main Layout Grid */
 .layout {
   display: grid;
   grid-template-columns: 1fr 1.3fr;
@@ -49,7 +49,7 @@ body {
   }
 }
 
-/* Panels */
+/* Cards & Panels */
 .panel {
   background: #ffffff;
   border: 1px solid #e4e4e7;
@@ -80,7 +80,7 @@ body {
   border-radius: 9999px;
 }
 
-/* Form Styles */
+/* Form Styling */
 .form-group {
   margin-top: 1rem;
 }
@@ -120,7 +120,7 @@ body {
   background-color: #27272a;
 }
 
-/* Empty State */
+/* Empty Contact Directory State */
 .empty-box {
   border: 2px dashed #d4d4d8;
   border-radius: 8px;
@@ -131,7 +131,7 @@ body {
   background-color: #fafafa;
 }
 
-/* Cards List */
+/* Dynamic Cards List */
 .cards-list {
   display: flex;
   flex-direction: column;
