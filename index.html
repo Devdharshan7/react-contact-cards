@@ -7,16 +7,154 @@
   <link rel="stylesheet" href="style.css">
   
   <!-- React & ReactDOM CDN -->
-  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
   
-  <!-- Babel CDN -->
+  <!-- Babel CDN for JSX -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
 
   <div id="root"></div>
 
-  <script type="text/babel" src="app.js"></script>
+  <!-- React Code Embedded Inline to Fix GitHub Pages CORS Error -->
+  <script type="text/babel">
+    const { useState } = React;
+
+    function App() {
+      const [contacts, setContacts] = useState([]);
+      const [formData, setFormData] = useState({
+        fullName: '',
+        email: '',
+        phone: '',
+        role: 'Frontend Developer'
+      });
+
+      const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+      };
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!formData.fullName || !formData.email) return;
+
+        const newContact = {
+          id: Date.now(),
+          ...formData
+        };
+
+        setContacts((prev) => [newContact, ...prev]);
+        setFormData({
+          fullName: '',
+          email: '',
+          phone: '',
+          role: 'Frontend Developer'
+        });
+      };
+
+      const handleDelete = (id) => {
+        setContacts((prev) => prev.filter((contact) => contact.id !== id));
+      };
+
+      return (
+        <div className="container">
+          {/* Header Section */}
+          <header className="header">
+            <h1>ContactHub</h1>
+            <p>Modular React SPA with Dynamic Contact Cards</p>
+          </header>
+
+          {/* Main Two-Column Layout */}
+          <div className="layout">
+            {/* Left Form Panel */}
+            <div className="panel">
+              <h2 className="panel-title">Add New Contact</h2>
+              <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    name="fullName"
+                    placeholder="Full Name"
+                    value={formData.fullName}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email Address"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="Phone Number"
+                    value={formData.phone}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <select name="role" value={formData.role} onChange={handleChange}>
+                    <option value="Frontend Developer">Frontend Developer</option>
+                    <option value="Backend Developer">Backend Developer</option>
+                    <option value="Full Stack Developer">Full Stack Developer</option>
+                    <option value="UI/UX Designer">UI/UX Designer</option>
+                    <option value="Project Manager">Project Manager</option>
+                  </select>
+                </div>
+                <button type="submit" className="btn-submit">
+                  Add Contact Card +
+                </button>
+              </form>
+            </div>
+
+            {/* Right Directory Panel */}
+            <div className="panel">
+              <div className="directory-header">
+                <h2 className="panel-title">Contact Directory</h2>
+                <span className="counter-badge">
+                  {contacts.length} {contacts.length === 1 ? 'Contact' : 'Contacts'}
+                </span>
+              </div>
+
+              {contacts.length === 0 ? (
+                <div className="empty-box">
+                  No contacts added yet. Use the form on the left to add one!
+                </div>
+              ) : (
+                <div className="cards-list">
+                  {contacts.map((contact) => (
+                    <div key={contact.id} className="contact-card">
+                      <div className="contact-info">
+                        <h3>{contact.fullName}</h3>
+                        <p>{contact.email} {contact.phone ? `• ${contact.phone}` : ''}</p>
+                        <span className="contact-role">{contact.role}</span>
+                      </div>
+                      <button
+                        className="btn-delete"
+                        onClick={() => handleDelete(contact.id)}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
 </body>
 </html>
